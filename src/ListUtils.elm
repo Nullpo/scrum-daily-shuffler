@@ -4,17 +4,18 @@ module ListUtils exposing (..)
 import Random
 import Time exposing (posixToMillis)
 
-getRandomIndex: List a -> (Random.Seed -> (Int, Random.Seed))
+getRandomIndex: List a -> Random.Seed -> (Int, Random.Seed)
 getRandomIndex = Random.step << Random.int 1 << List.length
 
 remove: a -> (List a -> List a)
-remove item = List.filter (\n -> n /= item)
+remove item = List.filter (\ n -> n /= item)
 
 append: List a -> a -> List a
 append list item = List.append list [item]
 
 get: Int -> List a -> Maybe a
 get i = List.head << List.reverse << List.take i
+
 
 -- LOGIC
 
